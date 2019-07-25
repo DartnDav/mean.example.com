@@ -90,7 +90,7 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
-
 //Connect to MongoDB
 mongoose.connect(config.mongodb, { useNewUrlParser: true });
+
+module.exports = app;
