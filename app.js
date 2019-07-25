@@ -14,7 +14,7 @@ var Users = require('./models/users');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var config = require('./config.dev');
-//~line 10
+var apiAuthRouter = require('./routes/api/auth');
 var apiUsersRouter = require('./routes/api/users');
 
 //Test the file
@@ -71,7 +71,7 @@ passport.deserializeUser(function (user, done) {
 });
 
 app.use('/api/users', apiUsersRouter);
-
+app.use('/api/auth', apiAuthRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
