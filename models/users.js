@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var uniqueValidator = require('mongoose-unique-validator');
-//~line 4
 var passportLocalMongoose = require('passport-local-mongoose');
 
 //Create a schema
