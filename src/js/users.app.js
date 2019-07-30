@@ -70,7 +70,7 @@ var usersApp = (function () {
                 </div>
               </div>
               <div class="card-body">
-                <form id="registrationForm" class="card-body">
+                <form id="createUser" class="card-body">
                   <div id="formMsg" class="alert alert-danger text-center">Your form has errors</div>
                   <div class="row">
                     <div class="form-group col-md-6">
@@ -101,8 +101,72 @@ var usersApp = (function () {
         `;
 
         app.innerHTML = form;
-    }
+        function viewUser(id) {
 
+            let uri = `${window.location.origin}/api/users/${id}`;
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', uri);
+
+            xhr.setRequestHeader(
+                'Content-Type',
+                'application/json; charset=UTF-8'
+            );
+
+            xhr.send();
+
+            xhr.onload = function () {
+                let app = document.getElementById('app');
+                let data = JSON.parse(xhr.response);
+                let card = '';
+
+                card = `<div class="card">
+                <div class="card-header clearfix">
+                  <h2 class="h3 float-left">${data.user.first_name} ${data.user.last_name}</h2>
+                  <div class="float-right">
+                    <a href="#edit-${data.user._id}" class="btn btn-primary">Edit</a>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div>${data.user.username}</div>
+                  <div>${data.user.email}</div>
+                </div>
+              </div>`;
+
+                app.innerHTML = card;
+            }
+        }
+    }
+    function postRequest(formId, url) {
+        let form = document.getElementById(formId);
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            let formData = new FormData(form);
+            let uri = `${window.location.origin}${url}`;
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', uri);
+
+            xhr.setRequestHeader(
+                'Content-Type',
+                'application/json; charset=UTF-8'
+            );
+
+            let object = {};
+            formData.forEach(function (value, key) {
+                object[key] = value;
+            });
+
+            xhr.send(JSON.stringify(object));
+            xhr.onload = function () {
+                let data = JSON.parse(xhr.response);
+                if (data.success === true) {
+                    window.location.hash = `#view-${data.user._id}`
+                } else {
+                    document.getElementById('formMsg').style.display = 'block';
+                }
+            }
+        });
+    }
     return {
         load: function () {
             viewUsers();
@@ -111,12 +175,13 @@ var usersApp = (function () {
 
             switch (hashArray[0]) {
                 case '#create':
-                    console.log('CREATE');
+                    // console.log('CREATE');
                     createUser();
+                    postRequest('createUser', '/api/users');
                     break;
 
                 case '#view':
-                    console.log('VIEW');
+                    viewUser(hashArray[1]);
                     break;
 
                 case '#edit':
