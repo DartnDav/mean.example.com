@@ -47,7 +47,7 @@ var articlesApp = (function () {
               <tr>
                 <td>Name</td>
                 <td>Title</td>
-                <td>Slug</td>
+                <td>Body</td>
               </tr>
             </thead>
             <tbody>${rows}</tbody>
