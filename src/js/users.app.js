@@ -250,44 +250,13 @@ var usersApp = (function () {
 
           <div class="text-center">
             <br>
-            <a onclick=extends ../layout
-
-            block content
-              h1 Create an Article
-              form(method='post' action='/users/articles')
-                div
-                  label(for='title') Title
-                  input(type='text' name='title' id='title')
-                div
-                  label(for='slug') Slug
-                  input(type='text' name='slug' id='slug')
-                div
-                  label(for='keywords') Keywords
-                  input(type='text' name='keywords' id='keywords')
-                div
-                  label(for='description') Description
-                  input(type='text' name='description' id='description')
-                div
-                  label(for='body') Body
-                  input(type='text' name='body' id='body')
-                div
-                  label(for='created') Created
-                  input(type='text' name='created' id='created')
-                div
-                  label(for='modified') Modified
-                  input(type='text' name='modified' id='modified')
-                div
-                  label(for='published') Published
-                  input(type='text' name='published' id='published')
-                div
-                  input(type='submit' value='submit')"usersApp.deleteUser('${data.user._id}');" class="btn btn-lg btn-danger text-white">
-              Yes delete ${data.user.username}
+            <a onclick="usersApp.deleteUser('${data.user._id}');" class="btn btn-lg btn-danger text-white">
+            Yes delete ${data.user.username}
             </a>
-
             <br><br><br>
             <a class="btn text-muted" href="#users">cancel</a>
-          </div>
 
+          </div>
         </div>
       </div>`;
 
