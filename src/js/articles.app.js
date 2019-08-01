@@ -29,6 +29,7 @@ var articlesApp = (function () {
           </td>
           <td>${articles[i]['title']}</td>
           <td>${articles[i]['slug']}</td>
+          <td>${articles[i]['body']}</td>
         </tr>`;
       }
 
@@ -47,7 +48,8 @@ var articlesApp = (function () {
               <tr>
                 <td>Name</td>
                 <td>Title</td>
-                <td>Body</td>
+                <td>Description</td>
+                <td>Article</td>
               </tr>
             </thead>
             <tbody>${rows}</tbody>
@@ -77,13 +79,13 @@ var articlesApp = (function () {
 
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="description">First Name</label>
-                  <input type="text" id="description" name="description" class="form-control" required>
+                  <label for="first_name">First Name</label>
+                  <input type="text" id="first_name" name="first_name" class="form-control" required>
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label for="keywords">Last Name</label>
-                  <input type="text" id="keywords" name="keywords" class="form-control" required>
+                  <label for="last_name">Last Name</label>
+                  <input type="text" id="last_name" name="last_name" class="form-control" required>
                 </div>
               </div>
 
@@ -94,8 +96,13 @@ var articlesApp = (function () {
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label for="slug">Slug</label>
-                  <input type="slug" id="slug" name="slug" class="form-control" required>
+                  <label for="description">Description</label>
+                  <input type="text" id="description" name="description" class="form-control" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-12">
+                <label for="body">Article Body</label><textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
                 </div>
               </div>
 
@@ -178,13 +185,13 @@ var articlesApp = (function () {
 
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="description">First Name</label>
-                  <input type="text" id="description" name="description" class="form-control" value="${data.article.description}" required>
+                  <label for="first_name">First Name</label>
+                  <input type="text" id="first_name" name="first_name" class="form-control" value="${data.article.first_name}" required>
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label for="keywords">Last Name</label>
-                  <input type="text" id="keywords" name="keywords" class="form-control" value="${data.article.keywords}" required>
+                  <label for="last_name">Last Name</label>
+                  <input type="text" id="last_name" name="last_name" class="form-control" value="${data.article.last_name}" required>
                 </div>
               </div>
 
@@ -195,8 +202,8 @@ var articlesApp = (function () {
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label for="slug">Slug</label>
-                  <input type="slug" id="slug" name="slug" class="form-control" value="${data.article.slug}" required>
+                  <label for="description">Description</label>
+                  <input type="text" id="description" name="description" class="form-control" value="${data.article.description}" required>
                 </div>
               </div>
 
