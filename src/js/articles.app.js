@@ -25,11 +25,14 @@ var articlesApp = (function () {
       for (let i = 0; i < articles.length; i++) {
         rows = rows + `<tr>
           <td>
-            <a href="#view-${articles[i]['_id']}">${articles[i]['keywords']}, ${articles[i]['description']}</a>
+            <a href="#view-${articles[i]['_id']}">${articles[i]['title']}</a>
           </td>
-          <td>${articles[i]['title']}</td>
-          <td>${articles[i]['slug']}</td>
-          <td>${articles[i]['body']}</td>
+          <td>${articles[i]['description']}</td>
+          <td>`
+          +
+          (articles[i]['published'] ? `${articles[i]['published'].slice(0, 19).replace('T', ' ')}` : `No Publication Date Set`)
+          + `
+          </td>
         </tr>`;
       }
 
@@ -46,10 +49,9 @@ var articlesApp = (function () {
           <table class="table table-striped table-hover table-bordered">
             <thead>
               <tr>
-                <td>Name</td>
                 <td>Title</td>
                 <td>Description</td>
-                <td>Article</td>
+                <td>Date Published</td>
               </tr>
             </thead>
             <tbody>${rows}</tbody>
@@ -102,7 +104,7 @@ var articlesApp = (function () {
               </div>
               <div class="row">
                 <div class="form-group col-md-12">
-                <label for="body">Article Body</label><textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                <label for="body">Article Body</label><textarea class="form-control" id="body" rows="3" required></textarea>
                 </div>
               </div>
 
@@ -140,12 +142,12 @@ var articlesApp = (function () {
         <div class="card-header clearfix">
           <h2 class="h3 float-left">${data.article.description} ${data.article.keywords}</h2>
           <div class="float-right">
-            <a href="#edit-${data.article._id}" class="btn btn-primary">Edit</a>
+            <a href="#edit-${data.article.title}" class="btn btn-primary">Edit</a>
           </div>
         </div>
         <div class="card-body">
-          <div>${data.article.title}</div>
-          <div>${data.article.slug}</div>
+          <div>${data.article.description}</div>
+          <div>${data.article.body}</div>
         </div>
       </div>`;
 
