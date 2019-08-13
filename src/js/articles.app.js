@@ -140,14 +140,15 @@ var articlesApp = (function () {
 
       card = `<div class="card">
         <div class="card-header clearfix">
-          <h2 class="h3 float-left">${data.article.description} ${data.article.keywords}</h2>
+          <h2 class="h3 float-left">${data.articles.title}</h2>
           <div class="float-right">
-            <a href="#edit-${data.article.title}" class="btn btn-primary">Edit</a>
+            <a href="#edit-${data.articles.title}" class="btn btn-primary">Edit</a>
           </div>
         </div>
         <div class="card-body">
-          <div>${data.article.description}</div>
-          <div>${data.article.body}</div>
+          <div>${data.articles.description}</div>
+          <div>${data.articles.body}</div>
+          <div>${data.articles.keywords}</div>
         </div>
       </div>`;
 

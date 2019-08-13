@@ -1,7 +1,7 @@
-//Register a new user
 var express = require('express');
 var router = express.Router();
-var passport = require('passport')
+var passport = require('passport');
+
 var Users = require('../../models/users');
 
 router.post('/register', function (req, res, next) {
@@ -12,31 +12,18 @@ router.post('/register', function (req, res, next) {
         email: data.email,
         first_name: data.first_name,
         last_name: data.last_name
-    }),
-        data.password,
-        function (err, user) {
-
-            if (err) {
-
-                return res.json({
-                    success: false,
-                    user: req.body,
-                    errors: err
-                });
-
-            }
-
-            return res.json({
-                success: true,
-                user: user
-            });
-
-        });
+    }), data.password, function (err, user) {
+        if (err) {
+            return res.json({ success: false, user: req.body, errors: err });
+        } else {
+            return res.json({ success: true, user: user });
+        }
+    });
 
 });
 
-//~line 37
 router.post('/login', function (req, res, next) {
+    //
     passport.authenticate('local', function (err, user, info) {
 
         if (err) {
@@ -51,12 +38,9 @@ router.post('/login', function (req, res, next) {
 
             if (err) {
                 return res.json({ success: false, error: err });
+            } else {
+                return res.json({ success: true, user: user });
             }
-
-            //we will use a console.log() to test the session data
-            console.log(req.session);
-
-            return res.json({ success: true, user: user });
 
         });
     })(req, res, next);
@@ -69,12 +53,6 @@ router.delete('/logout', function (req, res) {
     } else {
         return res.json({ success: 'false' });
     }
-});
-
-router.get('/logout', function (req, res) {
-    console.log(req.session);
-    req.logout();
-    console.log(req.session);
 });
 
 module.exports = router;
